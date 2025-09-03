@@ -5,10 +5,10 @@ using System.Collections;
 public class DynamicAtlasImage : MonoBehaviour
 {
     [SerializeField] private string atlasName = "UI";
-    [SerializeField] private string spriteName;
-    [SerializeField] private Texture2D sourceTexture;
     
     private Image imageComponent;
+    private string spriteName;
+    private Texture2D sourceTexture;
     private Coroutine loadCoroutine;
     private int lastAtlasVersion = 0;
     
@@ -19,6 +19,9 @@ public class DynamicAtlasImage : MonoBehaviour
     
     void Start()
     {
+        spriteName = imageComponent.sprite.name;
+        sourceTexture = imageComponent.sprite.texture;
+        
         if (sourceTexture != null && !string.IsNullOrEmpty(spriteName))
         {
             LoadSprite();
